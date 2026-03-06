@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                sh 'ls -la'
+                echo 'Building the application...'
+                sh 'echo Build stage completed'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                sh 'echo Test stage completed'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the application...'
+                sh 'echo Deploy stage completed'
+            }
+        }
+    }
+    
+    post {
+        always {
+            echo 'Pipeline execution finished'
+        }
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
+}
